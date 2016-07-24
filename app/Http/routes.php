@@ -6,7 +6,6 @@ if ( @Request::header()['cf-connecting-ip'][0] == "86.123.55.12" ) {
 }
 
 
-
 setlocale(LC_CTYPE, 'ro_RO');
 \Carbon\Carbon::setLocale('ro');
 define('APP_PATH','');
