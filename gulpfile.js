@@ -19,6 +19,7 @@ elixir(function(mix) {
         'lightgreen.4.3.1.css',
         'styles.4.3.1.css'
     ],'public/css/all.css');
+    mix.version('public/css/all.css');
 });
 
 

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="@yield('pDesc')">
     @yield('pMeta')
-    <link href="@yield('pURL')/css/all.css" rel="stylesheet">
+    <link href="@yield('pURL'){{ elixir('css/all.css') }}" rel="stylesheet">
     <script src="@yield('pURL')/js/all_new.js"></script>
 </head>
 <body style="padding-top: 100px;">
@@ -28,7 +28,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{APP_PUBLIC_URL}}">{{APP_NAME}}</a>
+                <a class="Logo" href="{{APP_PUBLIC_URL}}" style="display: block; font-size: 200%;">{{APP_NAME}}</a>
             </div>
 
             <div class="navbar-collapse collapse" id="navbar-collapsible" style="overflow: visible;">
@@ -86,10 +86,10 @@
 
 <footer class="footer-basic-centered">
 
-    <p class="footer-company-motto">FOOTER TEXT</p>
+    <p class="footer-company-motto">{{APP_NAME}} - Foruchat pentru toata lumea</p>
 
     <p class="footer-links">
-        <i class="fa fa-home"></i> <a href="{{APP_PUBLIC_URL}}">INDEX</a>
+        <i class="fa fa-home"></i> <a href="{{APP_PUBLIC_URL}}">{{APP_NAME}}</a>
         &nbsp; &nbsp;
     </p>
 
