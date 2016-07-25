@@ -19,6 +19,11 @@ define('GOOGLE', '<span style="font-family: Georgia;"><span style="color:blue;">
 
 
 
+Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
+Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
+
+
+
 Route::get('/', function () {
     return view('Index.index');
 });

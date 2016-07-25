@@ -12,9 +12,9 @@ var elixir = require('laravel-elixir');
  */
 elixir(function(mix) {
     mix.styles([
+        'style.css',
         'bootstrap.min.css',
         'font-awesome.css',
-        'style.css',
         'easy-autocomplete.css',
         'lightgreen.4.3.1.css',
         'styles.4.3.1.css'

@@ -33,16 +33,15 @@
 
             <div class="navbar-collapse collapse" id="navbar-collapsible" style="overflow: visible;">
 
-                {{--<ul class="nav navbar-nav navbar-left">
+                <ul class="nav navbar-nav navbar-left">
                     <li><a href="#">Link 1</a></li>
                     <li><a href="#">Link 2</a></li>
                 </ul>
 
+
                 <div class="navbar-form navbar-right btn-group">
-                    <button type="button" class="btn btn-default">Button 1</button>
-                    <button type="button" class="btn btn-default">Button 2</button>
-                    <button type="button" class="btn btn-default">Button 3</button>
-                </div>--}}
+                    <a class="btn btn-default" href="{{APP_PUBLIC_URL}}/auth/facebook">Intra cu Facebook</a>
+                </div>
 
                 <form class="navbar-form" method="GET" action="{{APP_PUBLIC_URL}}/s">
                     <div style="display:table;" class="input-group">
