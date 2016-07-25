@@ -11,3 +11,5 @@ What do we need for this project:
 3. REDIS database server from: http://redis.io/topics/quickstart
    Be very carefoul with that one. It`s very vulnerable on attacks if you start the server with no config file.
    Also, in the config file put a very long password ... something like asdf0kkd_sdfasd_sadfasdfa__asdfasdfasdf___asdfasdf
+
+To be continued ....
