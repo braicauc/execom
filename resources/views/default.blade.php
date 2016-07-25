@@ -40,7 +40,7 @@
 
 
                 <div class="navbar-form navbar-right btn-group">
-                    <a class="btn btn-default" href="{{APP_PUBLIC_URL}}/auth/facebook">Intra cu Facebook</a>
+                    <a class="btn btn-default" href="{{APP_PUBLIC_URL}}/auth/facebook"><i class="fa fa-facebook-square" style="color: darkblue;"></i> Intra cu Facebook</a>
                 </div>
 
                 <form class="navbar-form" method="GET" action="{{APP_PUBLIC_URL}}/s">
