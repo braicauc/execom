@@ -1,16 +1,31 @@
 
-.Logo { text-decoration: none; color: white; letter-spacing: -1px; padding: 5px;
-    text-shadow: 1px  1px 1px #ff0000, 1px -1px 1px #ff0000, -1px  1px 1px #ff0000, -1px -1px 1px #ff0000,
-    2px  2px 3px #ff0000, 2px -2px 3px #ff0000, -2px  2px 3px #ff0000, -2px -2px 3px #ff0000; display: table; }
-.Logo:after { content: ".ro"; color: black; font-size: 0.6em; letter-spacing: 0; margin-left: 5px; margin-right: 5px; text-shadow: none; }
-.Logo:hover { color: red; text-decoration: none;
-    text-shadow: 1px  1px 1px white, 1px -1px 1px white, -1px  1px 1px white, -1px -1px 1px white,
-    2px  2px 15px white, 2px -2px 15px white, -2px  2px 15px white, -2px -2px 15px white;
-
+.Logo {
+    text-decoration: none;
+    color: white;
+    letter-spacing: -1px;
+    padding: 5px;
+    text-shadow: 1px 1px 1px #428bca, 1px -1px 1px #428bca, -1px 1px 1px #428bca, -1px -1px 1px #428bca,
+    2px 2px 3px #428bca, 2px -2px 3px #428bca, -2px 2px 3px #428bca, -2px -2px 3px #428bca;
+    display: table;
 }
 
+.Logo:after {
+    content: ".ro";
+    color: black;
+    font-size: 0.6em;
+    letter-spacing: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-shadow: none;
+}
 
-a { color: red; }
+.Logo:hover {
+    color: #428bca;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px white, 1px -1px 1px white, -1px 1px 1px white, -1px -1px 1px white,
+    2px 2px 15px white, 2px -2px 15px white, -2px 2px 15px white, -2px -2px 15px white;
+
+}
 
 .footer-basic-centered{
     background-color: #292c2f;

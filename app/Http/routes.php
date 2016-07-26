@@ -24,6 +24,10 @@ Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback
 
 
 
+Route::get('/setup_director', ['uses' => 'Setup\SetupController@setupDirector']); // !!!! we must comment this line on production
+
+
+
 Route::get('/', function () {
     return view('Index.index');
 });
