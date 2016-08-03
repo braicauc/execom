@@ -41,9 +41,8 @@ class SEO extends Model
 
         $slugs = (object)array();
         $slugs->slug = SEO::seo($director->categorie);
-        $slugs->link = 'http://'.$slugs->slug.'.'.APP_SHORT_LINK ;
+        $slugs->link = route('foruchat',$slugs->slug) ;
         return $slugs;
-
     }
 
 

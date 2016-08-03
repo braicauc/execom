@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Index;
 
+use App\Director;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -18,7 +19,9 @@ class IndexController extends Controller
     public function index() {
 
 
-        return view('Index.index');
+        $categories = Director::get();
+
+        return view('Index.index', compact('categories'));
     }
 
 

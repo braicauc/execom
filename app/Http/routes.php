@@ -21,12 +21,17 @@ define('GOOGLE', '<span style="font-family: Georgia;"><span style="color:blue;">
 
 
 
+
+Route::get('foruchat/{categorie}', ['as' => 'foruchat', 'uses' => 'Director\DirectorController@index']);
+
+
+
 Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
 Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
 Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@logout']);
 
 
-Route::get('/setup_director', ['uses' => 'Setup\SetupController@setupDirector']); // !!!! we must comment this line on production
+// Route::get('/setup_director', ['uses' => 'Setup\SetupController@setupDirector']); // !!!! we must comment this line on production
 
 
 
