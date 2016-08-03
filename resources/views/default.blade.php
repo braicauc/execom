@@ -13,6 +13,12 @@
 
 <script>
     APP_PUBLIC_URL = '@yield('pURL')';
+    AUTH_USER_ID = '{{Auth::user()->id}}';
+@if(empty(\Illuminate\Support\Facades\Session::get('personalKey')))
+    AUTH_PRIVATE_KEY = '{{(new App\User())->setPersonalKey(Auth::user())}}';
+@else
+    AUTH_PRIVATE_KEY = '{{\Illuminate\Support\Facades\Session::get('personalKey')}}';
+@endif
 </script>
 
 <div class="wrapper">
