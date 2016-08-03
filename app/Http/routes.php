@@ -11,6 +11,8 @@ setlocale(LC_CTYPE, 'ro_RO');
 define('APP_PATH','/home/execom/execom');
 define('APP_PUBLIC_PATH',APP_PATH.'/public');
 define('APP_PUBLIC_URL','http://execom.ro');
+define('APP_AVATARS_PATH',APP_PUBLIC_PATH.'/dbp/avatars');
+define('APP_AVATARS_URL',APP_PUBLIC_URL.'/dbp/avatars');
 define('APP_NAME','eXecom');
 define('APP_SHORT_LINK', 'execom.ro');
 define('APP_EMAIL', 'admin@execom.ro');
@@ -21,13 +23,11 @@ define('GOOGLE', '<span style="font-family: Georgia;"><span style="color:blue;">
 
 Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
 Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
-
+Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@logout']);
 
 
 Route::get('/setup_director', ['uses' => 'Setup\SetupController@setupDirector']); // !!!! we must comment this line on production
 
 
 
-Route::get('/', function () {
-    return view('Index.index');
-});
+Route::get('/', ['as' => 'index_path', 'uses' => 'Index\IndexController@index']); //

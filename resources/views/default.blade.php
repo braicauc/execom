@@ -40,7 +40,11 @@
 
 
                 <div class="navbar-form navbar-right btn-group">
-                    <a class="btn btn-default" href="{{APP_PUBLIC_URL}}/auth/facebook"><i class="fa fa-facebook-square" style="color: #428bca;"></i> Intra cu Facebook</a>
+                    @if(Auth::check())
+                        <a class="btn btn-default" href="{{route('logout')}}"><i class="fa fa-power-off" style="color: red;"></i> Iesire din cont</a>
+                    @else
+                        <a class="btn btn-default" href="{{APP_PUBLIC_URL}}/auth/facebook"><i class="fa fa-facebook-square" style="color: #428bca;"></i> Intra cu Facebook</a>
+                    @endif
                 </div>
 
                 <form class="navbar-form" method="GET" action="{{APP_PUBLIC_URL}}/s">
