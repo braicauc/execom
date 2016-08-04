@@ -59,6 +59,11 @@ io.sockets.on( 'connection', function( client ) {
      // console.log(JSON.stringify(client.request.headers));
      // console.log(client.request.headers.origin);
 
+    // messages on foruchat
+    client.on( 'channel', function( data ) {
+        console.log(JSON.stringify(data));
+    });
+     
 
 
 

@@ -85,20 +85,19 @@
 @push('scripts')
 
 <script>
-    $("#messageForm").submit(function (e) {
-        return e.preventDefault(), socket.emit("chat", {
-            id: AUTH_USER_ID,
-            name: AUTH_USER_USERNAME,
-            avatar: AUTH_USER_AVATAR,
-            catre: OASPETE_ID,
-            link: LINK_CONVERSATIE,
+    var CHANNEL = '{{$channel}}';
+    $("#messageForm").submit( function(e) { e.preventDefault();
+        socket.emit( 'channel', {
             message: $("#msg").val(),
-            res_id: RES_ID,
-            resursa: RESURSA,
-            pkey: AUTH_PRIVATE_KEY
-        }), $("#msg").val(""), Scrl("#divMsg"), !1
-    }), socket.on(RESURSA, function (e) {
-        $("#messages").append("<dt><strong>" + e.name + "</strong></dt><dd>" + e.message + "</dd>"), Scrl("#divMsg")
+            channel: CHANNEL
+        });
+        $("#msg").val('');
+        Scrl('#divMsg');
+        return false;
+    });
+    socket.on( CHANNEL, function( data ) {
+        $("#messages").append('<dt><strong>' + data.name + '</strong></dt><dd>' + data.message + '</dd>');
+        Scrl('#divMsg');
     });
 </script>
 

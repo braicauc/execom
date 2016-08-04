@@ -33,7 +33,9 @@ class DirectorController extends Controller
 
         $messages = $this->getMessages();
 
-        return view('Foruchat.foruchat', compact('director','messages'));
+        $channel = $this->getRedisChannel($director->categorie);
+
+        return view('Foruchat.foruchat', compact('director','messages','channel'));
     }
 
 
@@ -52,6 +54,13 @@ class DirectorController extends Controller
      */
     private function setDirector($slug) {
         $this->director = Director::directorBySlug($slug);
+    }
+
+
+    private function getRedisChannel($channel) {
+        $redis = new RedisMessages($channel);
+        $redis->strToRedisChannel();
+        return $redis->redisChannel;
     }
     
     
