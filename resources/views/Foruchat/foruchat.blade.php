@@ -85,7 +85,21 @@
 @push('scripts')
 
 <script>
-
+    $("#messageForm").submit(function (e) {
+        return e.preventDefault(), socket.emit("chat", {
+            id: AUTH_USER_ID,
+            name: AUTH_USER_USERNAME,
+            avatar: AUTH_USER_AVATAR,
+            catre: OASPETE_ID,
+            link: LINK_CONVERSATIE,
+            message: $("#msg").val(),
+            res_id: RES_ID,
+            resursa: RESURSA,
+            pkey: AUTH_PRIVATE_KEY
+        }), $("#msg").val(""), Scrl("#divMsg"), !1
+    }), socket.on(RESURSA, function (e) {
+        $("#messages").append("<dt><strong>" + e.name + "</strong></dt><dd>" + e.message + "</dd>"), Scrl("#divMsg")
+    });
 </script>
 
 @endpush
