@@ -151,5 +151,9 @@
     $("#cauta_afaceri_firme").easyAutocomplete(options);
 </script>
 
+@stack('scripts')
+
+
+
 </body>
 </html>

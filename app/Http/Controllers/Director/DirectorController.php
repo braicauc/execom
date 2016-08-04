@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Director;
 
 use App\Director;
+use App\RedisMessages;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -30,10 +31,20 @@ class DirectorController extends Controller
 
         $director = $this->director;
 
-        return view('Foruchat.foruchat', compact('director'));
+        $messages = $this->getMessages();
+
+        return view('Foruchat.foruchat', compact('director','messages'));
     }
 
-    
+
+    /**
+     * Get Messages for current category
+     * @return mixed
+     */
+    private function getMessages() {
+        return (new RedisMessages($this->director->categorie))->readMessagesFromChannel();
+    }
+
 
     /**
      * Set $this->director;

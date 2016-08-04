@@ -1,0 +1,1 @@
+var socket = io.connect( 'http://89.35.6.181:4545' ); // execom.ro will not work on coudflare
