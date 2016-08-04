@@ -7,7 +7,7 @@
     <meta name="description" content="@yield('pDesc')">
     @yield('pMeta')
     <link href="@yield('pURL'){{ elixir('css/all.css') }}" rel="stylesheet">
-    <script src="@yield('pURL')/js/all_new.js"></script>
+    <script src="@yield('pURL'){{ elixir('js/all.js') }}"></script>
 </head>
 <body style="padding-top: 100px;">
 

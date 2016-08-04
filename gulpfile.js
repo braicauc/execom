@@ -11,6 +11,15 @@ var elixir = require('laravel-elixir');
  |
  */
 elixir(function(mix) {
+
+
+    mix.scripts([
+        'jquery.1.11.3.js',
+        'bootstrap.3.3.5.js',
+        'easy-autocomplete.js'
+    ],'public/js/all.js');
+
+
     mix.styles([
         'bootstrap.min.css',
         'font-awesome.css',
@@ -19,15 +28,14 @@ elixir(function(mix) {
         'lightgreen.4.3.1.css',
         'styles.4.3.1.css'
     ],'public/css/all.css');
-    mix.version('public/css/all.css');
+
+
+    mix.version([
+        'public/css/all.css',
+        'public/js/all.js'
+    ]);
+
 });
 
 
 
-elixir(function(mix) {
-    mix.scripts([
-        'jquery.1.11.3.js',
-        'bootstrap.3.3.5.js',
-        'easy-autocomplete.js'
-    ],'public/js/all_new.js');
-});
