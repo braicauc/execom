@@ -8,14 +8,14 @@ if ( @Request::header()['cf-connecting-ip'][0] == "86.123.55.12" ) {
 
 setlocale(LC_CTYPE, 'ro_RO');
 \Carbon\Carbon::setLocale('ro');
-define('APP_PATH','/home/execom/execom');
-define('APP_PUBLIC_PATH',APP_PATH.'/public');
-define('APP_PUBLIC_URL','http://execom.ro');
-define('APP_AVATARS_PATH',APP_PUBLIC_PATH.'/dbp/avatars');
-define('APP_AVATARS_URL',APP_PUBLIC_URL.'/dbp/avatars');
-define('APP_NAME','eXecom');
-define('APP_SHORT_LINK', 'execom.ro');
-define('APP_EMAIL', 'admin@execom.ro');
+define('APP_PATH',env('APP_PATH'));
+define('APP_PUBLIC_PATH',env('APP_PUBLIC_PATH'));
+define('APP_PUBLIC_URL',env('APP_PUBLIC_URL'));
+define('APP_AVATARS_PATH',env('APP_AVATARS_PATH'));
+define('APP_AVATARS_URL',env('APP_AVATARS_URL'));
+define('APP_NAME',env('APP_NAME'));
+define('APP_SHORT_LINK',env('APP_SHORT_LINK'));
+define('APP_EMAIL',env('APP_EMAIL'));
 define('GOOGLE', '<span style="font-family: Georgia;"><span style="color:blue;">G</span><span style="color:red;">o</span><span style="color:orange;">o</span><span style="color:blue;">g</span><span style="color:green;">l</span><span style="color:red;">e</span></span>');
 
 

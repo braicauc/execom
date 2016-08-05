@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="@yield('pDesc')">
     @yield('pMeta')
-    <link href="@yield('pURL'){{ elixir('css/all.css') }}" rel="stylesheet">
-    <script src="@yield('pURL'){{ elixir('js/all.js') }}"></script>
+    <link href="{{APP_PUBLIC_URL}}{{ elixir('css/all.css') }}" rel="stylesheet">
+    <script src="{{APP_PUBLIC_URL}}{{ elixir('js/all.js') }}"></script>
 </head>
 <body style="padding-top: 100px;">
 
