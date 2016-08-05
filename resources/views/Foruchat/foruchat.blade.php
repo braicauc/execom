@@ -47,8 +47,7 @@
                         @if(Auth::check())
                             <form id="messageForm">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="msg" placeholder="Mesajul tau..."
-                                           autocomplete="off">
+                                    <input type="text" class="form-control" id="msg" placeholder="Mesajul tau..." autocomplete="off">
                                     <span class="input-group-btn">
                                           <button class="btn btn-success" type="button"
                                                   onclick="$('#messageForm').submit()">Trimite!
@@ -86,11 +85,12 @@
 
 <script>
     var CHANNEL = '{{$channel}}';
-    $("#messageForm").submit( function(e) { e.preventDefault();
+    $("#messageForm").unbind('submit').submit( function(e) { e.preventDefault();
         socket.emit( 'channel', {
             message: $("#msg").val(),
             channel: CHANNEL
         });
+        alert('1');
         $("#msg").val('');
         Scrl('#divMsg');
         return false;
