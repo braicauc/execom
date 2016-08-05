@@ -7,7 +7,7 @@ var striptags = require( 'striptags' ); // when users send messages filter html 
 
 // a small library from https://www.npmjs.com/package/dotenv
 // it`s used to read our env variable because we do not want to expose them here
-require('dotenv').config({path: '/home/execom/execom/.env'});
+require('dotenv').config({path: 'E:/www/execom.ro/execom/.env'}); // do not forget to change that /home/execom/execom.env
 
 
 
