@@ -6,3 +6,4 @@ Homestead.json
 .env
 .idea
 .gitignore
+/node/env.js
