@@ -1,4 +1,3 @@
-
 $("#messageForm").unbind('submit').submit( function(e) { e.preventDefault();
     socket.emit( 'channel', {
         user_id: AUTH_USER_ID,
@@ -10,7 +9,6 @@ $("#messageForm").unbind('submit').submit( function(e) { e.preventDefault();
     Scrl('#divMsg');
     return false;
 });
-
 
 
 socket.on( CHANNEL, function( data ) {

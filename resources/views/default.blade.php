@@ -8,6 +8,7 @@
     @yield('pMeta')
     <link href="{{APP_PUBLIC_URL}}{{ elixir('css/all.css') }}" rel="stylesheet">
     <script src="{{APP_PUBLIC_URL}}{{ elixir('js/all.js') }}"></script>
+
 </head>
 <body style="padding-top: 100px;">
 
@@ -95,7 +96,6 @@
 </div>  {{--Wrapper--}}
 
 
-@stack('scripts')
 
 <footer class="footer-basic-centered">
 
@@ -122,34 +122,6 @@
 </footer>
 
 
-<script>
-    function goToCod(slug) {
-        link = makeLink(slug);
-        window.location.assign(link);
-    }
-    function makeLink(slug) {
-        link = 'http://' + slug.split(' ').join('-') + '.twx.ro';
-        return link;
-    }
-    var options = {
-        url: function(cauta) {
-            return APP_PUBLIC_URL + "/api/" + cauta + "?t=" + new Date().getTime();
-        },
-        getValue: "categorie",
-        theme: "bootstrap",
-        requestDelay: 300,
-        list: {
-            onClickEvent: function () {
-                goToCod($("#cauta_afaceri_firme").getSelectedItemData().categorie);
-            },
-
-            onChooseEvent: function () {
-                goToCod($("#cauta_afaceri_firme").getSelectedItemData().categorie);
-            }
-        }
-    };
-    $("#cauta_afaceri_firme").easyAutocomplete(options);
-</script>
 
 <script>
     var socket = io.connect( '{{SOCKETURI}}:{{SOCKETPORT}}' );
