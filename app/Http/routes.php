@@ -2,7 +2,7 @@
 if ( @Request::header()['cf-connecting-ip'][0] == "86.123.55.12" ) {
     config(['app.debug' => true]);
 } else {
-    config(['app.debug' => false]);
+    config(['app.debug' => true]);
 }
 
 

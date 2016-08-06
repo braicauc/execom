@@ -39,7 +39,7 @@ class RedisMessages extends Model
      * @return mixed
      */
     public function strToRedisChannel() {
-        $this->redisChannel = str_replace(" ","",ucwords($this->channel));
+        $this->redisChannel = 'ch:'.str_replace(" ","",ucwords($this->channel));
     }
 
 

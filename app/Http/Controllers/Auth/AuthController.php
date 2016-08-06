@@ -128,7 +128,10 @@ class AuthController extends Controller
 
         \Illuminate\Support\Facades\Auth::login($authUser, true);
 
-        (new User())->setPersonalKey($authUser);
+        $user = new User();
+        $user->setPersonalKey($authUser); // set AUTH_PRIVATE_KEY;
+        $user->setRedisUser($authUser);   // set an instance of the user into redis variabile user:det:user_id
+        session(['user_id' => $authUser->id]);
 
         return $authUser;
     }

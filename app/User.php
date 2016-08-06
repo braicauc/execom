@@ -51,6 +51,16 @@ class User extends Authenticatable
     }
 
 
+    /**
+     * Set user instance to Redis databese under the key user:det:user_id
+     * This instance is used in node into node/class/User.js
+     * @param $authUser
+     */
+    public function setRedisUser($authUser) {
+        Redis::set("user:det:".$authUser->id,$authUser);
+    }
+
+
 
 
 }

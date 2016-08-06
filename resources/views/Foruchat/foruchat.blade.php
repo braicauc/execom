@@ -38,7 +38,7 @@
                             <div style="height: 100%; display: flex; align-items: flex-end;">
                                 <div style="height: 100%; width: 100%; overflow-y: scroll;" id="divMsg">
                                     <dl class="dl-horizontal" id="messages">
-                                        {{dump($messages)}}
+
                                     </dl>
                                 </div>
                             </div>
@@ -67,6 +67,7 @@
                     <div class="col-lg-4 col-md-12">
 
 
+
                     </div>
 
 
@@ -82,24 +83,11 @@
 
 
 @push('scripts')
-
 <script>
     var CHANNEL = '{{$channel}}';
-    $("#messageForm").unbind('submit').submit( function(e) { e.preventDefault();
-        socket.emit( 'channel', {
-            message: $("#msg").val(),
-            channel: CHANNEL
-        });
-        alert('1');
-        $("#msg").val('');
-        Scrl('#divMsg');
-        return false;
-    });
-    socket.on( CHANNEL, function( data ) {
-        $("#messages").append('<dt><strong>' + data.name + '</strong></dt><dd>' + data.message + '</dd>');
-        Scrl('#divMsg');
-    });
 </script>
+
+<script src="{{APP_PUBLIC_URL}}/js/chat.js"></script>
 
 @endpush
 
