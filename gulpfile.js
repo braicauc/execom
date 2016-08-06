@@ -16,7 +16,6 @@ elixir(function(mix) {
         'jquery.1.11.3.js',
         'bootstrap.3.3.5.js',
         'socket.io.js',
-        'nos.js',
         'main.js',
         'easy-autocomplete.js'
     ],'public/js/all.js');

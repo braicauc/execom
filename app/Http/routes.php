@@ -16,6 +16,8 @@ define('APP_AVATARS_URL',env('APP_AVATARS_URL'));
 define('APP_NAME',env('APP_NAME'));
 define('APP_SHORT_LINK',env('APP_SHORT_LINK'));
 define('APP_EMAIL',env('APP_EMAIL'));
+define('SOCKETURI',env('SOCKETURI'));
+define('SOCKETPORT',env('SOCKETPORT'));
 define('GOOGLE', '<span style="font-family: Georgia;"><span style="color:blue;">G</span><span style="color:red;">o</span><span style="color:orange;">o</span><span style="color:blue;">g</span><span style="color:green;">l</span><span style="color:red;">e</span></span>');
 
 

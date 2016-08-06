@@ -151,6 +151,9 @@
     $("#cauta_afaceri_firme").easyAutocomplete(options);
 </script>
 
+<script>
+    var socket = io.connect( '{{SOCKETURI}}:{{SOCKETPORT}}' );
+</script>
 @stack('scripts')
 
 
