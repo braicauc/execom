@@ -28,7 +28,15 @@
                             <div style="height: 100%; display: flex; align-items: flex-end;">
                                 <div style="height: 100%; width: 100%; overflow-y: scroll;" id="divMsg">
                                     <dl class="dl-horizontal messages" id="messages">
-
+                                        @foreach($messages as $m)
+                                            <dt>
+                                            @if(!empty($m['avatar']))
+                                                <img src="{{APP_AVATARS_URL}}/{{$m['avatar']}}">
+                                            @endif
+                                               <strong>{{$m['username']}}</strong>
+                                            </dt>
+                                            <dd>{{$m['message']}}</dd>
+                                        @endforeach
                                     </dl>
                                 </div>
                             </div>
@@ -95,6 +103,8 @@
         $("#messages").append('<dt><strong>' + data.username + '</strong></dt><dd>' + data.message + '</dd>');
         Scrl('#divMsg');
     });
+
+    Scrl('#divMsg');
 </script>
 
 

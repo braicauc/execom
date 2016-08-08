@@ -34,6 +34,31 @@ class RedisMessages extends Model
 
 
     /**
+     * Take messages from redis channel (ex: ch:AdeziviMobila) and transform them into an array
+     * @param $messages
+     * @return array|null
+     */
+    public function messagesToArray($messages, $krsort = true) {
+
+        if ( empty($messages) ) {
+             return null;
+        }
+
+        $arrs=[];
+
+        foreach ($messages as $u) {
+            $arrs[] = json_decode($u,true);
+        }
+
+        if ( $krsort == true ) {
+             @krsort($arrs);
+        }
+
+        return $arrs;
+    }
+
+
+    /**
      * Transform a string to a redis string Ex: cars for sale -> CarsForSale
      * @param $str
      * @return mixed

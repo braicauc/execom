@@ -38,13 +38,19 @@ class DirectorController extends Controller
         return view('Foruchat.foruchat', compact('director','messages','channel'));
     }
 
+    
 
     /**
      * Get Messages for current category
      * @return mixed
      */
     private function getMessages() {
-        return (new RedisMessages($this->director->categorie))->readMessagesFromChannel();
+
+        $redis = new RedisMessages($this->director->categorie);
+
+        $messages = $redis->readMessagesFromChannel();
+
+        return $redis->messagesToArray($messages);
     }
 
 
