@@ -2126,12 +2126,25 @@
 
 /* Foruchat page */
 div.messages {
+    margin 2px 2px 0 5px;
     font-size: 85%;
-    line-height: 180%;
+    line-height: 200%;
 }
 span.userChat > img {
     width: 24px;
     height: 24px;
+}
+
+span.userChat > strong {
+    font-weight: normal;
+    font-size: 110%;
+    margin: 0 2px 0 2px;
+    display: inline-block;
+    transform : scale(1,1.3);
+    -webkit-transform:scale(1,1.3); /* Safari and Chrome */
+    -moz-transform:scale(1,1.3); /* Firefox */
+    -ms-transform:scale(1,1.3); /* IE 9+ */
+    -o-transform:scale(1,1.3); /* Opera */
 }
 
 .easy-autocomplete {

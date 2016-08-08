@@ -35,7 +35,7 @@
                                                 @if(!empty($m['avatar']))
                                                     <img src="{{APP_AVATARS_URL}}/{{$m['avatar']}}">
                                                 @endif
-                                                   <strong>{{$m['username']}}</strong>
+                                                    &lt;<strong>{{$m['username']}}</strong>&gt;
                                                 </span> :
                                                 <span class="message">{{$m['message']}}</span>
                                                 </div>
@@ -108,7 +108,7 @@
         if ( data.avatar ) {
              avatar = '<img src="' + APP_AVATAR_URL + '/' + data.avatar + '"> ';
         }
-        $("#messages").append('<div><span class="userChat">' + avatar + '<strong>' + data.username + '</strong></span> : <span class="message">' + data.message + '</span></div>');
+        $("#messages").append('<div><span class="userChat">' + avatar + '&lt;<strong>' + data.username + ' </strong>&gt;</span> : <span class="message">' + data.message + '</span></div>');
         Scrl('#divMsg');
     });
 
