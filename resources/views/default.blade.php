@@ -14,6 +14,7 @@
 
 <script>
     APP_PUBLIC_URL = '@yield('pURL')';
+    APP_AVATAR_URL = '{{APP_AVATARS_URL}}';
     @if(Auth::check())
 
     AUTH_USER_ID = '{{Auth::user()->id}}';

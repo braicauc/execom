@@ -27,17 +27,19 @@
                         <div class="well" style="height: 400px; padding: 2px 2px 0 2px; margin: 0 0 5px 0;">
                             <div style="height: 100%; display: flex; align-items: flex-end;">
                                 <div style="height: 100%; width: 100%; overflow-y: scroll;" id="divMsg">
-                                    <dl class="dl-horizontal messages" id="messages">
+                                    <div class="messages" id="messages">
                                         @foreach($messages as $m)
-                                            <dt>
+                                            <div>
+                                            <span class="userChat">
                                             @if(!empty($m['avatar']))
                                                 <img src="{{APP_AVATARS_URL}}/{{$m['avatar']}}">
                                             @endif
                                                <strong>{{$m['username']}}</strong>
-                                            </dt>
-                                            <dd>{{$m['message']}}</dd>
+                                            </span>
+                                            <span class="message">{{$m['message']}}</span>
+                                            </div>
                                         @endforeach
-                                    </dl>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -100,7 +102,11 @@
 
 
     socket.on( CHANNEL, function( data ) {
-        $("#messages").append('<dt><strong>' + data.username + '</strong></dt><dd>' + data.message + '</dd>');
+        var avatar;
+        if ( data.avatar ) {
+             avatar = '<img src="' + APP_AVATAR_URL + '/' + data.avatar + '">';
+        }
+        $("#messages").append('<div><span class="userChat">' + avatar + '<strong>' + data.username + '</strong></span><span class="message">' + data.message + '</span></div>');
         Scrl('#divMsg');
     });
 

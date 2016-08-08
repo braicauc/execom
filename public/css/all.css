@@ -2125,12 +2125,13 @@
 
 
 /* Foruchat page */
-dl.messages {
+div.messages {
     font-size: 80%;
-}
-
-dl.messages > dt, dl.messages > dd {
     line-height: 180%;
+}
+span.userChat > img {
+    width: 24px;
+    height: 24px;
 }
 
 .easy-autocomplete {

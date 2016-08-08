@@ -87,6 +87,7 @@ io.sockets.on( 'connection', function( client ) {
                         user_id    : data.user_id,
                         name       : udet.name,
                         username   : udet.username,
+                        avatar     : udet.avatar,
                         message    : striptags(data.message),
                         created_at : new Date().getTime() / 1000
                     };
