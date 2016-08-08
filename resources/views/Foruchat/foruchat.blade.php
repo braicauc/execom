@@ -22,7 +22,7 @@
                 {{-- Containerul de categorii pe prima pagina --}}
                 <div class="row">
 
-                    <div class="col-lg-8 col-md-12">
+                    <div class="col-lg-10 col-md-12" style="margin-bottom: 20px;">
 
                         <div class="well" style="height: 400px; padding: 2px 2px 0 2px; margin: 0 0 5px 0;">
                             <div style="height: 100%; display: flex; align-items: flex-end;">
@@ -66,7 +66,18 @@
 
                     </div>
 
-                    <div class="col-lg-4 col-md-12">
+                    <div class="col-lg-2 col-md-12"  style="margin-bottom: 20px;">
+
+
+                        <div class="well" style="height: 400px; padding: 2px 2px 0 2px; margin: 0 0 5px 0;">
+                            <div style="height: 100%; display: flex; align-items: flex-end;">
+                                <div style="height: 100%; width: 100%; overflow-y: scroll;" id="divUsers">
+                      
+
+
+                               </div>
+                           </div>
+                        </div>
 
 
 
