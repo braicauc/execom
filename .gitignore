@@ -1,9 +1,14 @@
 /vendor
 /node_modules
+/node/env.js
 /public/storage
+/public/build
+/public/dbp
+/public/js
+/public/css
 Homestead.yaml
 Homestead.json
 .env
 .idea
 .gitignore
-/node/env.js
+
