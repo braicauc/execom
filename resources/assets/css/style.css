@@ -90,3 +90,14 @@
         line-height: 1.8;
     }
 }
+
+
+
+/* Foruchat page */
+dl.messages {
+    font-size: 80%;
+}
+
+dl.messages > dt, dl.messages > dd {
+    line-height: 180%;
+}

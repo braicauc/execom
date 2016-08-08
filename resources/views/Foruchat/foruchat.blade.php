@@ -12,16 +12,6 @@
 
 @section('container')
 
-    <style>
-        dt.pnt {
-            cursor: pointer;
-        }
-
-        dt.pnt:hover {
-            text-decoration: underline;
-            color: darkgreen;
-        }
-    </style>
 
     <div class="container">
         <div class="row">
@@ -37,7 +27,7 @@
                         <div class="well" style="height: 400px; padding: 2px 2px 0 2px; margin: 0 0 5px 0;">
                             <div style="height: 100%; display: flex; align-items: flex-end;">
                                 <div style="height: 100%; width: 100%; overflow-y: scroll;" id="divMsg">
-                                    <dl class="dl-horizontal" id="messages">
+                                    <dl class="dl-horizontal messages" id="messages">
 
                                     </dl>
                                 </div>
@@ -85,7 +75,6 @@
 @push('scripts')
 <script>
     var CHANNEL = '{{$channel}}';
-
 </script>
 
 <script>
