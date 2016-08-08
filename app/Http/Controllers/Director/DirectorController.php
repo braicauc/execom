@@ -38,7 +38,7 @@ class DirectorController extends Controller
         return view('Foruchat.foruchat', compact('director','messages','channel'));
     }
 
-    
+
 
     /**
      * Get Messages for current category
@@ -63,10 +63,13 @@ class DirectorController extends Controller
     }
 
 
+    /**
+     * Get the Redis channel
+     * @param $channel
+     * @return mixed
+     */
     private function getRedisChannel($channel) {
-        $redis = new RedisMessages($channel);
-        $redis->strToRedisChannel();
-        return $redis->redisChannel;
+        return (new RedisMessages($channel))->setRedisChannel();
     }
     
     

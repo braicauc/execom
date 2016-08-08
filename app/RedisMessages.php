@@ -29,7 +29,7 @@ class RedisMessages extends Model
      * @return mixed
      */
     public function readMessagesFromChannel($limit = 50) {
-        return Redis::lrange($this->strToRedisChannel(),0,$limit);
+        return Redis::lrange($this->setRedisChannel(),0,$limit);
     }
 
 
@@ -63,9 +63,15 @@ class RedisMessages extends Model
      * @param $str
      * @return mixed
      */
-    public function strToRedisChannel() {
+    public function setRedisChannel() {
+
         $this->redisChannel = 'ch:'.str_replace(" ","",ucwords($this->channel));
+
+        return $this->redisChannel;
     }
+
+
+
 
 
 

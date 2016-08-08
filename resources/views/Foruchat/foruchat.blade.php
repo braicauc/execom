@@ -28,17 +28,19 @@
                             <div style="height: 100%; display: flex; align-items: flex-end;">
                                 <div style="height: 100%; width: 100%; overflow-y: scroll;" id="divMsg">
                                     <div class="messages" id="messages">
-                                        @foreach($messages as $m)
-                                            <div>
-                                            <span class="userChat">
-                                            @if(!empty($m['avatar']))
-                                                <img src="{{APP_AVATARS_URL}}/{{$m['avatar']}}">
-                                            @endif
-                                               <strong>{{$m['username']}}</strong>
-                                            </span>
-                                            <span class="message">{{$m['message']}}</span>
-                                            </div>
-                                        @endforeach
+                                        @if(!empty($messages))
+                                            @foreach($messages as $m)
+                                                <div>
+                                                <span class="userChat">
+                                                @if(!empty($m['avatar']))
+                                                    <img src="{{APP_AVATARS_URL}}/{{$m['avatar']}}">
+                                                @endif
+                                                   <strong>{{$m['username']}}</strong>
+                                                </span> :
+                                                <span class="message">{{$m['message']}}</span>
+                                                </div>
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -104,9 +106,9 @@
     socket.on( CHANNEL, function( data ) {
         var avatar;
         if ( data.avatar ) {
-             avatar = '<img src="' + APP_AVATAR_URL + '/' + data.avatar + '">';
+             avatar = '<img src="' + APP_AVATAR_URL + '/' + data.avatar + '"> ';
         }
-        $("#messages").append('<div><span class="userChat">' + avatar + '<strong>' + data.username + '</strong></span><span class="message">' + data.message + '</span></div>');
+        $("#messages").append('<div><span class="userChat">' + avatar + '<strong>' + data.username + '</strong></span> : <span class="message">' + data.message + '</span></div>');
         Scrl('#divMsg');
     });
 

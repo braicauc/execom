@@ -94,8 +94,8 @@ io.sockets.on( 'connection', function( client ) {
 
                     console.log('emitMes: ' + JSON.stringify(emitMes));
 
-                    redis.lpush( emitMes.channel, JSON.stringify(emitMes));
-                    redis.ltrim( emitMes.channel, 0, 5000);
+                    redis.lpush( data.channel, JSON.stringify(emitMes));
+                    redis.ltrim( data.channel, 0, 5000);
 
                     io.sockets.emit( data.channel, emitMes );
                     console.log('----->Emit');
