@@ -10,5 +10,4 @@ Homestead.yaml
 Homestead.json
 .env
 .idea
-.gitignore
-
+.gitignore:

@@ -89,10 +89,11 @@ io.sockets.on( 'connection', function( client ) {
                         username   : udet.username,
                         avatar     : udet.avatar,
                         message    : striptags(data.message),
-                        created_at : new Date().getTime() / 1000
+                        created_at : Math.round(new Date().getTime() / 1000)
                     };
 
                     console.log('emitMes: ' + JSON.stringify(emitMes));
+                    colose.log(emitMes.created_at);
 
                     redis.lpush( data.channel, JSON.stringify(emitMes));
                     redis.ltrim( data.channel, 0, 5000);
