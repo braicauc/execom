@@ -32,49 +32,23 @@ class DirectorController extends Controller
 
         $director = $this->director;
 
-        $messages = $this->getMessages();
+        $redis = new RedisMessages($this->director->categorie);
 
-        $channel = $this->getRedisChannel($director->categorie);
+        $messages = $redis->readMessagesFromChannel()->messagesToArray();
 
-        $user_ids = $this->getOnlineUsers();
+        $channel = $redis->redisChannel;
+
+        $user_ids = $redis->getUsersFromChannel();
 
         if ( !empty($user_ids) ) {
-             $online_users = User::whereIn('id',$user_ids)->orderBy('username')->get();
+             $online_users = User::whereIn('id',array_values($user_ids))->get();
         }
 
         return view('Foruchat.foruchat', compact('director','messages','channel','online_users'));
     }
 
 
-    /**
-     * Get online users
-     * @return mixed
-     */
-    private function getOnlineUsers() {
-
-        $redis = new RedisMessages($this->director->categorie);
-
-        $users = $redis->getUsersFromChannel();
-
-        return $users;
-    }
-
-
-
-    /**
-     * Get Messages for current category
-     * @return mixed
-     */
-    private function getMessages() {
-
-        $redis = new RedisMessages($this->director->categorie);
-
-        $messages = $redis->readMessagesFromChannel();
-
-        return $redis->messagesToArray($messages);
-    }
-
-
+    
     /**
      * Set $this->director;
      * @param $slug
@@ -82,19 +56,6 @@ class DirectorController extends Controller
     private function setDirector($slug) {
         $this->director = Director::directorBySlug($slug);
     }
-
-
-    /**
-     * Get the Redis channel
-     * @param $channel
-     * @return mixed
-     */
-    private function getRedisChannel($channel) {
-        return (new RedisMessages($channel))->setRedisChannel();
-    }
-    
-    
-    
 
 
 

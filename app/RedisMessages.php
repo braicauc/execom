@@ -13,6 +13,8 @@ class RedisMessages extends Model
 
     public $redisChannel;
 
+    public $channelMessages;
+
 
     /**
      * RedisMessages constructor.
@@ -20,6 +22,7 @@ class RedisMessages extends Model
      */
     public function __construct($channel = null) {
         $this->channel = $channel;
+        $this->setRedisChannel();
     }
 
 
@@ -29,7 +32,8 @@ class RedisMessages extends Model
      * @return mixed
      */
     public function readMessagesFromChannel($limit = 50) {
-        return Redis::lrange($this->setRedisChannel(),0,$limit);
+        $this->channelMessages = Redis::lrange($this->setRedisChannel(),0,$limit);
+        return $this;
     }
 
 
@@ -38,15 +42,15 @@ class RedisMessages extends Model
      * @param $messages
      * @return array|null
      */
-    public function messagesToArray($messages, $krsort = true) {
+    public function messagesToArray($krsort = true) {
 
-        if ( empty($messages) ) {
+        if ( empty($this->channelMessages) ) {
              return null;
         }
 
         $arrs=[];
 
-        foreach ($messages as $u) {
+        foreach ($this->channelMessages as $u) {
             $arrs[] = json_decode($u,true);
         }
 
@@ -64,9 +68,7 @@ class RedisMessages extends Model
      * @return mixed
      */
     public function setRedisChannel() {
-
         $this->redisChannel = 'ch:'.str_replace(" ","",ucwords($this->channel));
-
         return $this->redisChannel;
     }
 
@@ -76,11 +78,9 @@ class RedisMessages extends Model
      * @return mixed
      */
     public function getUsersFromChannel() {
-        $users = Redis::smembers('patterns:online:user:' . $this->redisChannel);
-        if ( !empty($users ) ) {
-            return str_replace("online:user:", "", $users);
-        }
-        return null;
+        $users = Redis::smembers('patterns:online:user:ch:AdeziviMobila');
+        return str_replace("online:user:ch:AdeziviMobila:", "", $users);
+        
     }
 
 
