@@ -21,8 +21,10 @@ class RedisMessages extends Model
      * @param null $channel
      */
     public function __construct($channel = null) {
-        $this->channel = $channel;
-        $this->setRedisChannel();
+        if ( !is_null($channel) ) {
+             $this->channel = $channel;
+             $this->setRedisChannel();
+        } 
     }
 
 
@@ -60,6 +62,9 @@ class RedisMessages extends Model
 
         return $arrs;
     }
+
+
+
 
 
     /**
