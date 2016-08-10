@@ -71,6 +71,17 @@ class RedisMessages extends Model
     }
 
 
+    /**
+     * Get online users from redis key 'patterns:online:user:' . $this->redisChannel
+     * @return mixed
+     */
+    public function getUsersFromChannel() {
+        $users = Redis::smembers('patterns:online:user:' . $this->redisChannel);
+        if ( !empty($users ) ) {
+            return str_replace("online:user:", "", $users);
+        }
+        return null;
+    }
 
 
 

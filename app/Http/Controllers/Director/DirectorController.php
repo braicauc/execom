@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Director;
 
 use App\Director;
 use App\RedisMessages;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -35,7 +36,27 @@ class DirectorController extends Controller
 
         $channel = $this->getRedisChannel($director->categorie);
 
-        return view('Foruchat.foruchat', compact('director','messages','channel'));
+        $user_ids = $this->getOnlineUsers();
+
+        if ( !empty($user_ids) ) {
+             $online_users = User::whereIn('id',$user_ids)->orderBy('username')->get();
+        }
+
+        return view('Foruchat.foruchat', compact('director','messages','channel','online_users'));
+    }
+
+
+    /**
+     * Get online users
+     * @return mixed
+     */
+    private function getOnlineUsers() {
+
+        $redis = new RedisMessages($this->director->categorie);
+
+        $users = $redis->getUsersFromChannel();
+
+        return $users;
     }
 
 

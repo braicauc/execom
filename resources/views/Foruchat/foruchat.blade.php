@@ -18,11 +18,20 @@
 
             <div class="col-xs-12">
 
+                <style>
+                    img.uav {
+                        border-radius: 12px;
+                        padding: 3px;
+                        width: 24px;
+                        height: 24px;
+                    }
+                </style>
+
 
                 {{-- Containerul de categorii pe prima pagina --}}
                 <div class="row">
 
-                    <div class="col-lg-10 col-md-12" style="margin: 0 0 20px 0px; padding: 0 0 0 15px;">
+                    <div class="col-lg-9 col-md-12" style="margin: 0 0 20px 0px; padding: 0 0 0 15px;">
 
                         <div class="well" style="height: 400px; padding: 2px 2px 0 2px; margin: 0 0 5px 0;">
                             <div style="height: 100%; display: flex; align-items: flex-end;">
@@ -66,14 +75,20 @@
 
                     </div>
 
-                    <div class="col-lg-2 col-md-12"  style="margin: 0 0 20px 0; padding: 0 15px 0 0;">
+                    <div class="col-lg-3 col-md-12"  style="margin: 0 0 20px 0; padding: 0 15px 0 0;">
 
 
                         <div class="well" style="height: 400px; padding: 2px 2px 0 2px; margin: 0 0 5px 0;">
                             <div style="height: 100%; display: flex; align-items: flex-end;">
-                                <div style="height: 100%; width: 100%; overflow-y: scroll;" id="divUsers">
+                                <div style="height: 100%; width: 100%; overflow-y: scroll; font-size: 70%;" id="divUsers">
 
+                                    @if(!empty($online_users))
 
+                                        @foreach($online_users as $u)
+                                            <span class="userChat" id="usrl{{$u->id}}"><img src="{{APP_AVATARS_URL}}/{{$u->avatar}}" class="uav"> &lt;<strong>{{$u->username}}</strong>&gt;</span>
+                                        @endforeach
+
+                                    @endif
 
                                </div>
                            </div>
@@ -124,6 +139,32 @@
     });
 
     Scrl('#divMsg');
+
+
+    setInterval(function() {
+        socket.emit( 'online:users', {
+           user_id  : AUTH_USER_ID,
+           pkey     : AUTH_PRIVATE_KEY,
+           channel  : CHANNEL
+        });
+    },2000);
+
+    socket.on( CHANNEL + ":online", function( data ) {
+
+        // alert(JSON.stringify(data));
+
+        var avatar;
+        if (data.user.avatar) {
+            avatar = '<img src="' + APP_AVATAR_URL + '/' + data.user.avatar + '" class="uav"> ';
+        }
+
+        if ( $("#usrl" + data.user.id).length == 0)  {
+            $("#divUsers").append('<span class="userChat" id="usrl' + data.user.id + '">' + avatar + '&lt;<strong>' + data.user.username + '</strong>&gt;</span>');
+        }
+
+
+    });
+
 </script>
 
 

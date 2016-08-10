@@ -93,7 +93,7 @@ io.sockets.on( 'connection', function( client ) {
                     };
 
                     console.log('emitMes: ' + JSON.stringify(emitMes));
-                    colose.log(emitMes.created_at);
+                    console.log(emitMes.created_at);
 
                     redis.lpush( data.channel, JSON.stringify(emitMes));
                     redis.ltrim( data.channel, 0, 5000);
@@ -110,7 +110,56 @@ io.sockets.on( 'connection', function( client ) {
         });
 
     });
-     
+
+
+
+
+    // handle online users on specific channel
+    client.on ( 'online:users', function(data) {
+
+        console.log('Data from channel: ' + JSON.stringify(data) );
+
+        redis.get( "user:det:" + data.user_id ).then(function (result) {
+
+            var udet = JSON.parse(result);
+
+            console.log('Datele utilizatorului: ' + JSON.stringify(udet) );
+
+            redis.get( "user:keys:" + data.user_id ).then(function (pkeys) {
+
+                console.log('Cheile utilizatorului: ' + pkeys);
+
+                if (checkPrivateKey(data.pkey, pkeys) == true) {
+
+                    console.log('Name utilizator: ' + udet.name );
+
+                    var $key = 'online:user:' + data.channel + ":" + data.user_id;
+                    var d = new Date();
+                    var created_at = Math.floor(( d.getTime() ) / 1000);
+                    console.log(created_at);
+
+                    redis.exists($key, function (err, result) {
+                        if ( result == 1 ) {
+                            
+                        } else {
+                            io.sockets.emit( data.channel + ":online", { user: udet });
+                        }
+                    });
+
+                    redis.hmset($key, { user_id: data.user_id, created_at: created_at });
+                    redis.sadd('patterns:online:user:' + data.channel, 'online:user:' + data.channel + ":" + data.user_id );
+
+                } else {
+                    // warnUser('Ooops! Ceva nu merge. Incercati sa va autentificati din nou!', data.id);
+                }
+
+            });
+
+        });
+
+    });
+
+
 
 
 
