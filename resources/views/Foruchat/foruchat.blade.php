@@ -85,7 +85,7 @@
                                     @if(!empty($online_users))
 
                                         @foreach($online_users as $u)
-                                            <span class="userChat" id="usrl{{$u->id}}"><img src="{{APP_AVATARS_URL}}/{{$u->avatar}}" class="uav"> &lt;<strong>{{$u->username}}</strong>&gt;</span>
+                                            <span class="userChat" id="usrl{{$u->id}}"><img src="{{APP_AVATARS_URL}}/{{$u->avatar}}" class="uav"> &lt;<strong>{{$u->username}}</strong>&gt;<br></span>
                                         @endforeach
 
                                     @endif
@@ -159,7 +159,7 @@
         }
 
         if ( $("#usrl" + data.user.id).length == 0)  {
-            $("#divUsers").append('<span class="userChat" id="usrl' + data.user.id + '">' + avatar + '&lt;<strong>' + data.user.username + '</strong>&gt;</span>');
+            $("#divUsers").append('<span class="userChat" id="usrl' + data.user.id + '">' + avatar + '&lt;<strong>' + data.user.username + '</strong>&gt;<br></span>');
         }
 
 
