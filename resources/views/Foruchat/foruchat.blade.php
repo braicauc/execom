@@ -147,7 +147,7 @@
            pkey     : AUTH_PRIVATE_KEY,
            channel  : CHANNEL
         });
-    },2000);
+    },10000);
 
     socket.on( CHANNEL + ":online", function( data ) {
 
@@ -163,6 +163,11 @@
         }
 
 
+    });
+
+
+    socket.on( 'disc_user_{{$channel}}', function  (data) {
+          $("#usrl" + data.user_id).remove();
     });
 
 </script>

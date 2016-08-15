@@ -42,11 +42,15 @@ function inArray(needle, haystack) {
     return false;
 }
 
+// isEmpty string function
+function isEmpty(str) {
+    return (!str || 0 === str.length);
+}
 
 // check if the user is indeed the user that send the message
 function checkPrivateKey( privateKey, redisKeys) {
-    if ( redisKeys == '' ) {
-        return false;
+    if ( isEmpty(redisKeys) ) {
+         return false;
     }
     return inArray(privateKey,redisKeys.split(","));
 }
@@ -140,9 +144,56 @@ io.sockets.on( 'connection', function( client ) {
 
                     redis.exists($key, function (err, result) {
                         if ( result == 1 ) {
+
+                            /** Check online users */
+                            redis.smembers('patterns:online:user:' + data.channel, function(err, vonline){
+
+                                for (var index = 0, len = vonline.length; index < len; ++index) {
+
+                                    redis.hgetall(vonline[index], function(err, vdet) {
+
+                                        var _now = Math.floor(( new Date().getTime() ) / 1000);
+                                        var _created_at = vdet.created_at;
+                                        var seconds = _now - _created_at;
+
+                                        console.log('Seconds for ' + vdet.user_id + ' : ' + seconds);
+
+                                        if ( seconds > 60 ) {
+                                            redis.srem('patterns:online:user:' + data.channel, 'online:user:' + data.channel + ':' + vdet.user_id);
+                                            redis.del('online:user:' + data.channel + ':' + vdet.user_id);
+                                            io.sockets.emit( "disc_user_" + data.channel, { user_id: vdet.user_id });
+                                        }
+                                    });
+                                }
+
+                            });
                             
                         } else {
                             io.sockets.emit( data.channel + ":online", { user: udet });
+
+                            /** Check online users */
+                            redis.smembers('patterns:online:user:' + data.channel, function(err, vonline){
+
+                                for (var index = 0, len = vonline.length; index < len; ++index) {
+
+                                    redis.hgetall(vonline[index], function(err, vdet) {
+
+                                        var _now = Math.floor(( new Date().getTime() ) / 1000);
+                                        var _created_at = vdet.created_at;
+                                        var seconds = _now - _created_at;
+
+                                        console.log('Seconds: ' + seconds);
+
+                                        if ( seconds > 60 ) {
+                                            redis.srem('patterns:online:user:' + data.channel, 'online:user:' + data.channel + ':' + vdet.user_id);
+                                            redis.del('online:user:' + data.channel + ':' + vdet.user_id);
+                                            io.sockets.emit( "disc_user_", { user_id: vdet.user_id });
+                                        }
+                                    });
+                                }
+
+                            });
+
                         }
                     });
 
