@@ -38,11 +38,20 @@ class SEO extends Model
      * @return object
      */
     public static function linkDirector(Director $director) {
-
         $slugs = (object)array();
         $slugs->slug = SEO::seo($director->categorie);
         $slugs->link = route('foruchat',$slugs->slug) ;
         return $slugs;
+    }
+
+
+    /**
+     * Simple slug function
+     * @param $str
+     * @return mixed
+     */
+    public static function simpleSlug($s) {
+        return preg_replace('/\-+/','-',preg_replace('/\s+/','-',preg_replace('/\s+/',' ',trim(preg_replace("/[^[:space:]a-zA-Z0-9\-]/", "", strtolower($s))))));
     }
 
 
