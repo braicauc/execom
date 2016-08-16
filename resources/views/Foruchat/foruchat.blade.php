@@ -25,32 +25,98 @@
                         width: 24px;
                         height: 24px;
                     }
+
+                    @media (min-width: 1200px) {
+                        #chatWindow {
+                          margin: 0 0 20px 0;
+                          padding: 0 0 0 15px;
+                        }
+                        #usersWindow {
+                            margin: 0 0 20px 0;
+                            padding: 0 15px 0 0;
+                        }
+                        #wellConv {
+                            height: 400px;
+                        }
+                        #wellUsers {
+                            height: 400px;
+                        }
+                    }
+
+
+                    img.avatar48 {
+                        border-radius: 24px;
+                        padding: 3px;
+                        width: 48px;
+                        height: 48px;
+                    }
+
+                    /* Foruchat page */
+                    table.messages {
+                        width: 100%;
+                        margin 2px 2px 0 5px;
+                        font-size: 85%;
+                        line-height: 200%;
+                    }
+
+
+
+                    span.msgopt {
+                        font-size: 80%;
+                        color: dodgerblue;
+                    }
+
+                    td.avatar {
+                        vertical-align: top;
+                        padding-right: 5px;
+                    }
+
+                    td.msgusr > strong {
+                        font-weight: normal;
+                        color: dodgerblue;
+                        font-size: 110%;
+                        margin: 0 2px 0 2px;
+                        display: inline-block;
+                        transform : scale(1,1.3);
+                        -webkit-transform:scale(1,1.3); /* Safari and Chrome */
+                        -moz-transform:scale(1,1.3); /* Firefox */
+                        -ms-transform:scale(1,1.3); /* IE 9+ */
+                        -o-transform:scale(1,1.3); /* Opera */
+                    }
+
                 </style>
 
 
                 {{-- Containerul de categorii pe prima pagina --}}
                 <div class="row">
 
-                    <div class="col-lg-9 col-md-12" style="margin: 0 0 20px 0px; padding: 0 0 0 15px;">
+                    <div id="chatWindow" class="col-lg-9 col-md-12">
 
-                        <div class="well" style="height: 400px; padding: 2px 2px 0 2px; margin: 0 0 5px 0;">
+                        <div id="wellConv" class="well" style="padding: 2px 2px 0 2px; margin: 0 0 5px 0;">
                             <div style="height: 100%; display: flex; align-items: flex-end;">
                                 <div style="height: 100%; width: 100%; overflow-y: scroll;" id="divMsg">
-                                    <div class="messages" id="messages">
+                                    <table id="messages" class="messages">
                                         @if(!empty($messages))
                                             @foreach($messages as $m)
-                                                <div>
-                                                <span class="userChat">
-                                                @if(!empty($m['avatar']))
-                                                    <img src="{{APP_AVATARS_URL}}/{{$m['avatar']}}">
-                                                @endif
-                                                    &lt;<strong>{{$m['username']}}</strong>&gt;
-                                                </span> :
-                                                <span class="message">{{$m['message']}}</span>
-                                                </div>
+                                                <tr class="msg">
+                                                    <td class="avatar">
+                                                        @if(!empty($m['avatar']))
+                                                            <img src="{{APP_AVATARS_URL}}/{{$m['avatar']}}" class="avatar48">
+                                                        @endif
+                                                     </td>
+                                                    <td class="msgusr">
+                                                       &lt;<strong>{{$m['username']}}</strong>&gt;
+                                                         :
+                                                       <span class="msgtxt">{{$m['message']}}</span>
+                                                        <br>
+                                                       <span class="msgopt">
+                                                           Reply
+                                                       <span>
+                                                    </td>
+                                                </tr>
                                             @endforeach
                                         @endif
-                                    </div>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -75,10 +141,10 @@
 
                     </div>
 
-                    <div class="col-lg-3 col-md-12"  style="margin: 0 0 20px 0; padding: 0 15px 0 0;">
+                    <div class="col-lg-3 col-md-12" id="usersWindow">
 
 
-                        <div class="well" style="height: 400px; padding: 2px 2px 0 2px; margin: 0 0 5px 0;">
+                        <div id="wellUsers" class="well" style="padding: 2px 2px 0 2px; margin: 0 0 5px 0;">
                             <div style="height: 100%; display: flex; align-items: flex-end;">
                                 <div style="height: 100%; width: 100%; overflow-y: scroll; font-size: 70%;" id="divUsers">
 

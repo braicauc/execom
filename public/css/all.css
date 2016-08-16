@@ -2130,10 +2130,6 @@ div.messages {
     font-size: 85%;
     line-height: 200%;
 }
-span.userChat > img {
-    width: 24px;
-    height: 24px;
-}
 
 span.userChat > strong {
     font-weight: normal;
